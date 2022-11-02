@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -986,10 +985,10 @@ export type Volume = {
   cubic_meters?: Maybe<Scalars['Int']>;
 };
 
-export type GetShipsQueryVariables = Exact<{ [key: string]: never; }>;
+export type ShipsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetShipsQuery = { __typename?: 'Query', ships?: Array<{ __typename?: 'Ship', active?: boolean | null, image?: string | null, name?: string | null, type?: string | null } | null> | null };
+export type ShipsQuery = { __typename?: 'Query', ships?: Array<{ __typename?: 'Ship', active?: boolean | null, image?: string | null, name?: string | null, type?: string | null } | null> | null };
 
 
-export const GetShipsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetShips"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ships"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<GetShipsQuery, GetShipsQueryVariables>;
+export const ShipsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Ships"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ships"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<ShipsQuery, ShipsQueryVariables>;

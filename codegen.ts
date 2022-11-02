@@ -5,9 +5,8 @@ const config: CodegenConfig = {
   schema: "https://api.spacex.land/graphql/",
   documents: "**/*.{gql,graphql}",
   generates: {
-    "./graphql/generated/schema.ts": {
-      preset: "client",
-      plugins: [],
+    "./graphql/schema.ts": {
+      plugins: ["typescript", "typescript-operations", "typed-document-node"],
     },
     "./graphql.schema.json": {
       plugins: ["introspection"],

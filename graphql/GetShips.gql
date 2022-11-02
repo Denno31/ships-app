@@ -1,4 +1,4 @@
-query GetShips {
+query Ships {
   ships {
     active
     image
