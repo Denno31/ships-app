@@ -1,0 +1,8 @@
+query GetShips {
+  ships {
+    active
+    image
+    name
+    type
+  }
+}
