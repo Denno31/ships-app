@@ -1,0 +1,6 @@
+fragment ShipFields on Ship {
+  active
+  image
+  name
+  type
+}

@@ -1,11 +1,10 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, InMemoryCache, makeVar } from '@apollo/client'
+import { client } from '../apolloclient'
 
-const client = new ApolloClient({
-  uri:"https://api.spacex.land/graphql/",
-  cache:new InMemoryCache()
-})
+
+
 export default function App({ Component, pageProps }: AppProps) {
   return <ApolloProvider client={client} >
     <Component {...pageProps} />

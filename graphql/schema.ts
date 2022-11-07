@@ -985,10 +985,12 @@ export type Volume = {
   cubic_meters?: Maybe<Scalars['Int']>;
 };
 
+export type ShipFieldsFragment = { __typename?: 'Ship', active?: boolean | null, image?: string | null, name?: string | null, type?: string | null };
+
 export type ShipsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ShipsQuery = { __typename?: 'Query', ships?: Array<{ __typename?: 'Ship', active?: boolean | null, image?: string | null, name?: string | null, type?: string | null } | null> | null };
 
-
-export const ShipsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Ships"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ships"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<ShipsQuery, ShipsQueryVariables>;
+export const ShipFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ShipFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Ship"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]} as unknown as DocumentNode<ShipFieldsFragment, unknown>;
+export const ShipsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Ships"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ships"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ShipFields"}}]}}]}},...ShipFieldsFragmentDoc.definitions]} as unknown as DocumentNode<ShipsQuery, ShipsQueryVariables>;

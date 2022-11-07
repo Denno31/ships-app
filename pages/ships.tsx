@@ -1,40 +1,40 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useReactiveVar } from "@apollo/client";
+import { readFile } from "fs/promises";
 import React from "react";
+import { favoriteShipsStore } from "../apolloclient";
+import FavoriteShip from "../components/FavoriteShip";
+import Ship from "../components/Ship";
 import { ShipsDocument } from "../graphql/schema";
 
-const GetShips = gql`
-  query GetShips {
-    ships {
-      active
-      image
-      name
-      type
-    }
-  }
-`;
 const Ships: React.FC = () => {
   const { loading, error, data } = useQuery(ShipsDocument);
+   let favoriteShips = useReactiveVar(favoriteShipsStore)
   if (loading) {
     return <div>Loading...</div>;
   }
+  const addToFavorite = (ship):void=>{
+    
+    favoriteShipsStore(favoriteShipsStore().concat(ship))
+  }
+  const isShipFavorite = (ship):Boolean=>{
+    console.log(favoriteShipsStore().length)
+    const favShip = favoriteShipsStore().find(favShip=> favShip ===ship.name)
+    if(!favShip){
+      return false
+    }
+    return true
+  }
+  const removeFromFavorite = (ship):void=>{
+    favoriteShipsStore(favoriteShipsStore().filter(favShip=> favShip !== ship.name))
+  }
   return (
     <div className="container">
+      <div>favorites: {favoriteShips.length}</div>
+      <FavoriteShip addToFavorite={addToFavorite}/>
       <div className="ship-wrapper">
         {data &&
           data.ships?.map((ship) => (
-            <div className="ship" key={ship?.name}>
-              <div className="ship-image">
-                {ship?.image && <img src={ship?.image} alt={ship?.name} />}
-              </div>
-              <div className="ship-details">
-                <p>
-                  <b>Name</b>:{ship?.name}
-                </p>
-                <p>
-                  <b>Type</b>:{ship?.type}
-                </p>
-              </div>
-            </div>
+           ship && <Ship ship={ship} key={ship.name} removeFromFavorite={removeFromFavorite} isShipFavorite={isShipFavorite} addToFavorite={addToFavorite} />
           ))}
       </div>
     </div>

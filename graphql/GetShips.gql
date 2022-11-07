@@ -1,8 +1,5 @@
 query Ships {
   ships {
-    active
-    image
-    name
-    type
+    ...ShipFields
   }
 }
